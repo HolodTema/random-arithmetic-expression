@@ -77,6 +77,10 @@ void getPostfixFromInfix(const char* infix, char* postfix, const size_t stackSiz
     int resultIndex = 0;
     int i = 0;
     while (infix[i] != '\0') {
+        if (i == 0 && (infix[i] == '*' || infix[i] == '/')) {
+            throw InvalidInfixChainException();
+        }
+
         if (infix[i] == '/' && infix[i+1] == '0') {
             throw DivisionByZeroException();
         }
